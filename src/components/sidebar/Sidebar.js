@@ -21,6 +21,8 @@ import {
 import { SidebarStyled } from "./SidebarStyle";
 import Dashboard from "../../pages/dashboard/Dashboard";
 import Header from "../header/Header";
+import { Link, Route, Routes } from "react-router-dom";
+import Duplicates from "../../pages/duplicates/Duplicates";
 
 const Sidebar = () => {
   const [IsOpen, setIsOpen] = useState(false);
@@ -33,9 +35,13 @@ const Sidebar = () => {
             <img src="./SidebarImg.jpg" alt="" className="sidebarImage" />
           </SidebarHeader>
           <SidebarContent>
-            <Menu iconShape="square" className={"test"}>
-              <MenuItem icon={<FaClone />}>Dublikatlar</MenuItem>
-              <MenuItem icon={<FaChartLine />}>Dashboard</MenuItem>
+            <Menu iconShape="square">
+              <MenuItem icon={<FaClone />}>
+                Dublikatlar <Link to="/duplicates" />
+              </MenuItem>
+              <MenuItem icon={<FaChartLine />}>
+                Dashboard <Link to="/dashboard" />
+              </MenuItem>
               <SubMenu icon={<FaLocationArrow />} title="Hududlar" />
               <SubMenu icon={<FaRegNewspaper />} title="O'quv muassasi" />
               <SubMenu icon={<FaChartPie />} title="Hisobotlar" />
@@ -47,7 +53,12 @@ const Sidebar = () => {
         </ProSidebar>
         <div className="content">
           <Header IsOpen={IsOpen} setIsOpen={setIsOpen} />
-          <Dashboard />
+          <div className="container">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/duplicates" element={<Duplicates />} />
+            </Routes>
+          </div>
         </div>
       </SidebarStyled>
     </>
