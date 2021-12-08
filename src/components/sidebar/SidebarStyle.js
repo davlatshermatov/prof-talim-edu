@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SidebarStyled = styled.div`
-  /* width: 100%; */
+
   display: flex;
   .sidebar {
     position: sticky;
@@ -15,8 +15,12 @@ export const SidebarStyled = styled.div`
   }
 
   .content {
-    padding: 1rem 3rem;
     width: 100%;
     overflow-x: hidden;
+
+    .container {
+      margin-top: 6rem;
+      padding: 1rem 3rem;
+    }
   }
 `;

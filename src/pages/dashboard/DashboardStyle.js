@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const DashboardStyled = styled.div`
+  > h1 {
+    margin: 1rem 0;
+  }
+
   .doughnutCharts {
     display: flex;
     width: 100%;
