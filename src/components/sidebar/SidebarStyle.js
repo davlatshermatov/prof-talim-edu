@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SidebarStyled = styled.div`
-
   display: flex;
   .sidebar {
     position: sticky;
