@@ -18,7 +18,7 @@ export const SidebarStyled = styled.div`
     overflow-x: hidden;
 
     .container {
-      margin-top: 6rem;
+      margin:1rem;
       padding: 1rem 3rem;
     }
   }

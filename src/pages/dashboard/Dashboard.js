@@ -44,8 +44,20 @@ const Dashboard = ({
     getAllStudentsByEducation,
   ]);
 
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  var today = new Date().toLocaleDateString("en-US", options);
+
   return (
     <DashboardStyled>
+      <div className="dashboard-header">
+        <p>/ Admin Side</p>
+        <p>{today}</p>
+      </div>
       <HorizontalMenu />
       <div className="doughnutCharts">
         <DoughnutChart />

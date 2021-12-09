@@ -38,6 +38,7 @@ const Sidebar = () => {
           className="sidebar"
           collapsed={IsOpen}
           breakPoint={"md"}
+          image="./SidebarImg.jpg"
         >
           <SidebarHeader>
             <img src="./SidebarImg.jpg" alt="" className="sidebarImage" />
