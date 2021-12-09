@@ -27,10 +27,19 @@ import Duplicates from "../../pages/duplicates/Duplicates";
 const Sidebar = () => {
   const [IsOpen, setIsOpen] = useState(false);
 
+  const handleClick = () => {
+    setIsOpen(!IsOpen);
+  };
+
   return (
     <>
       <SidebarStyled>
-        <ProSidebar className="sidebar" collapsed={IsOpen}>
+        <ProSidebar
+          className="sidebar"
+          collapsed={IsOpen}
+          breakPoint={"md"}
+          image="./SidebarImg.jpg"
+        >
           <SidebarHeader>
             <img src="./SidebarImg.jpg" alt="" className="sidebarImage" />
           </SidebarHeader>
@@ -52,7 +61,7 @@ const Sidebar = () => {
           <SidebarFooter>{/* do something */}</SidebarFooter>
         </ProSidebar>
         <div className="content">
-          <Header IsOpen={IsOpen} setIsOpen={setIsOpen} />
+          <Header IsOpen={IsOpen} handleClick={handleClick} />
           <div className="container">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />

@@ -1,33 +1,66 @@
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import React, { useEffect } from "react";
 
-import { getDashboardInfo } from "../../store/dashboard";
-
 import { DashboardStyled } from "./DashboardStyle";
-import HorizontalMenu from "../../components/statisticsMenu/HorizontalMenu";
-import data from "../../components/statisticsMenu/data";
-import doughnutData from "../../components/doughnut/data";
-import DoughnutChart from "../../components/doughnut/DoughnutChart";
 import BarChart from "../../components/bar/BarChart";
+import DoughnutChart from "../../components/doughnut/DoughnutChart";
+import HorizontalMenu from "../../components/horizontal-menu/HorizontalMenu";
 
-const Dashboard = ({ dashboard, getDashboardInfo }) => {
+import {
+  getDashboardInfo,
+  getAllStudents,
+  getAllLyceums,
+  getAllSchools,
+  getAllColleges,
+  getAllTechschools,
+  getAllStudentsByEducation,
+} from "../../store/dashboard";
+import { connect } from "react-redux";
+
+const Dashboard = ({
+  getDashboardInfo,
+  getAllStudents,
+  getAllLyceums,
+  getAllSchools,
+  getAllColleges,
+  getAllTechschools,
+  getAllStudentsByEducation,
+}) => {
   useEffect(() => {
-    // getDashboardInfo();
-  }, [getDashboardInfo]);
+    getDashboardInfo();
+    getAllStudents();
+    getAllSchools();
+    getAllColleges();
+    getAllLyceums();
+    getAllTechschools();
+    getAllStudentsByEducation();
+  }, [
+    getDashboardInfo,
+    getAllStudents,
+    getAllLyceums,
+    getAllColleges,
+    getAllSchools,
+    getAllTechschools,
+    getAllStudentsByEducation,
+  ]);
+
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  var today = new Date().toLocaleDateString("en-US", options);
 
   return (
     <DashboardStyled>
-      <h1>Dashboard</h1>
-      {data.map((item, index) => (
-        <HorizontalMenu key={index} item={item} />
-      ))}
-      <div className="doughnutCharts">
-        {doughnutData.map((item) => (
-          <DoughnutChart data={item} />
-        ))}
+      <div className="dashboard-header">
+        <p>/ Admin Side</p>
+        <p>{today}</p>
       </div>
-      <div className="barCharts">
-        <BarChart />
+      <HorizontalMenu />
+      <div className="doughnutCharts">
+        <DoughnutChart />
       </div>
       <div className="barCharts">
         <BarChart />
@@ -36,9 +69,12 @@ const Dashboard = ({ dashboard, getDashboardInfo }) => {
   );
 };
 
-export default connect(
-  ({ dashboardReducer }) => {
-    return { dashboard: dashboardReducer };
-  },
-  { getDashboardInfo }
-)(Dashboard);
+export default connect(null, {
+  getDashboardInfo,
+  getAllStudents,
+  getAllLyceums,
+  getAllSchools,
+  getAllColleges,
+  getAllTechschools,
+  getAllStudentsByEducation,
+})(Dashboard);
